@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+    }
+
+    body {
+        @apply bg-gray-50 overflow-x-hidden font-sans antialiased;
+    }
+}
+
+/* Layout e Containers */
+@layer components {
+    .section {
+        @apply relative w-full py-24 lg:py-32 flex items-center justify-center overflow-hidden;
+        isolation: isolate;
+    }
+
+    .section:first-child {
+        min-height: 100vh;
+        margin-top: 0;
+        padding-top: 5rem;
+    }
+
+    .section-container {
+        @apply container mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
+        max-width: 1440px;
+    }
+
+    /* Navbar */
+    .nav-fixed {
+        @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
+        backdrop-filter: blur(8px);
+    }
+
+    /* Botões */
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-8 py-3
+               bg-blue-600 text-white font-semibold rounded-lg
+               transition-all duration-300 transform
+               hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center px-8 py-3
+               border-2 border-white text-white font-semibold rounded-lg
+               transition-all duration-300 transform
+               hover:bg-white hover:text-gray-900 hover:-translate-y-1;
+    }
+}
+
+/* Skills Section */
+#skills {
+    @apply bg-gray-900;
+    padding: 6rem 0;
+}
+
+#skills .grid {
+    @apply max-w-7xl mx-auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+#skills .grid > div {
+    height: 100%;
+    min-height: 320px;
+}
+
+/* Cards */
+.skill-card {
+    @apply bg-gray-800 rounded-xl p-8 
+           transition-all duration-300 transform
+           hover:shadow-xl hover:scale-105;
+    height: 100%;
+}
+
+/* Z-index e Sobreposição */
+.z-top { z-index: 100; }
+.z-nav { z-index: 50; }
+.z-content { z-index: 10; }
+.z-background { z-index: 1; }
+
+/* Correções de Layout */
+.section + .section {
+    margin-top: 0;
+}
+
+#home {
+    padding-top: calc(4rem + 20px);
+}
+
+/* Gradientes e Fundos */
+.gradient-bg {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.glass {
+    @apply backdrop-blur-md bg-white/10;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-blue-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-700;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .section {
+        @apply py-16;
+    }
+
+    .section-container {
+        @apply px-4;
+    }
+
+    #skills {
+        padding: 4rem 0;
+    }
+
+    #skills .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Fix para Layout Shift */
+.section > * {
+    @apply transform-gpu;
+}
+
+/* Container Sizes */
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+    .container { max-width: 640px; }
+}
+
+@media (min-width: 768px) {
+    .container { max-width: 768px; }
+}
+
+@media (min-width: 1024px) {
+    .container { max-width: 1024px; }
+}
+
+@media (min-width: 1280px) {
+    .container { max-width: 1280px; }
+}
+
+@media (min-width: 1536px) {
+    .container { max-width: 1440px; }
+}
+
+/* Ajustando cor do texto dos projetos */
+.text-gray-600 {
+    --tw-text-opacity: 1;
+    color: #111827;
+}
+
+/* Sobrescrevendo bg-white para usar darkcyan */
+.bg-white {
+    --tw-bg-opacity: 1;
+    background-color: #006666;
+}
+
+/* Estilo do scroll indicator */
+.border-gray-400 {
+    border-color: #222;
+}
+
+/* Sobrescrevendo a cor do indicador de scroll */
+.bg-blue-500 {
+    background-color: #004444 !important;
+}
+
+/* Animação do scroll */
+@keyframes scroll {
+    0% { transform: translateY(0) translateZ(0); }
+    50% { transform: translateY(10px) translateZ(0); }
+    100% { transform: translateY(0) translateZ(0); }
+}
+
+.rounded-full {
+    animation: scroll 2s infinite;
+}
